@@ -28,7 +28,6 @@ function map(array, fn) {
   const arr2 = [];
   for (let i = 0; i < array.length; i++) {
     arr2[i] = fn(array[i], i, array);
-    // arr2.push(array[i] ** 2);
   }
   return arr2;
 }
@@ -80,6 +79,13 @@ function upperProps(obj) {
    obj.foo = 2;
    console.log(obj.foo); // 4
  */
-function createProxy(obj) {}
+function createProxy(obj) {
+  return new Proxy(obj, {
+    set(obj, key, value) {
+      obj[key] = value ** 2;
+      return true;
+    },
+  });
+}
 
 export { forEach, map, reduce, upperProps, createProxy };
