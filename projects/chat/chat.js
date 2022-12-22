@@ -8,10 +8,7 @@ import WSClient from './wsClient';
 
 export default class MyChat {
   constructor() {
-    this.wsClient = new WSClient(
-      `ws://${location.host}/chat/ws`,
-      this.onMessage.bind(this)
-    );
+    this.wsClient = new WSClient('ws://localhost:8080', this.onMessage.bind(this));
 
     this.ui = {
       loginWindow: new LoginWindow(
