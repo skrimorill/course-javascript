@@ -2,7 +2,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const fs = require('fs');
-const path = require('path');
+const path = require('');
 
 const root = path.resolve('projects');
 const projects = fs.readdirSync(root);
