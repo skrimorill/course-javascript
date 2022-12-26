@@ -3,9 +3,9 @@ export default class LoginWindow {
     this.element = element;
     this.onLogin = onLogin;
 
-    const loginNameInput = element.querySelector('[data-id=user-name]');
-    const submitButton = element.querySelector('[data-id=enter-button]');
-    const loginError = element.querySelector('[data-id=enter-error]');
+    const loginNameInput = element.querySelector('[data-role=login-name-input]');
+    const submitButton = element.querySelector('[data-role=login-submit]');
+    const loginError = element.querySelector('[data-role=login-error]');
 
     submitButton.addEventListener('click', () => {
       loginError.textContent = '';

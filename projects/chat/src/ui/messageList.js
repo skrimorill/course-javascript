@@ -13,7 +13,7 @@ export default class MessageList {
     item.classList.add('message-item');
     item.innerHTML = `
       <div class="message-item-left">
-        <div class="message-item-photo" data-id="user-avatar" data-user=${from}>
+        <div class="message-item-photo" data-role="user-avatar" data-user=${from}>
         </div>
       </div> 
       <div class="message-item-right">

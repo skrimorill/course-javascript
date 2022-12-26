@@ -1,11 +1,11 @@
 import LoginWindow from '../chat/src/ui/loginWindow';
-import UserName from '../chat/src/ui/userName';
 import MainWindow from '../chat/src/ui/mainWindow';
+import UserName from '../chat/src/ui/userName';
 import UserList from '../chat/src/ui/userList';
+import UserPhoto from './userPhoto';
 import MessageList from '../chat/src/ui/messageList';
 import MessageSender from '../chat/src/ui/messageSender';
 import WSClient from './wsClient';
-import UserPhoto from './userPhoto';
 
 export default class MyChat {
   constructor() {
@@ -16,19 +16,19 @@ export default class MyChat {
 
     this.ui = {
       loginWindow: new LoginWindow(
-        document.querySelector('#enter'),
+        document.querySelector('#login'),
         this.onLogin.bind(this)
       ),
-      mainWindow: new MainWindow(document.querySelector('#chat')),
-      userName: new UserName(document.querySelector('[data-id=user-name]')),
-      userList: new UserList(document.querySelector('[data-id=user-list]')),
-      messageList: new MessageList(document.querySelector('[data-id=message-list]')),
+      mainWindow: new MainWindow(document.querySelector('#main')),
+      userName: new UserName(document.querySelector('[data-role=user-name]')),
+      userList: new UserList(document.querySelector('[data-role=user-list]')),
+      messageList: new MessageList(document.querySelector('[data-role=messages-list]')),
       messageSender: new MessageSender(
-        document.querySelector('[data-id=message-sender]'),
+        document.querySelector('[data-role=message-sender]'),
         this.onSend.bind(this)
       ),
       userPhoto: new UserPhoto(
-        document.querySelector('[data-id=user-photo]'), // у тебя тут бургер!
+        document.querySelector('[data-role=user-photo]'),
         this.onUpload.bind(this)
       ),
     };
@@ -74,12 +74,12 @@ export default class MyChat {
       }
     } else if (type === 'bye-bye') {
       this.ui.userList.remove(from);
-      this.ui.messageList.removeSystemMessage(`${from} вышел из чата`);
+      this.ui.messageList.addSystemMessage(`${from} вышел из чата`);
     } else if (type === 'text-message') {
       this.ui.messageList.add(from, data.message);
     } else if (type === 'photo-changed') {
       const avatars = document.querySelectorAll(
-        `[data-id=user-avatar] [data-user=${data.name}]`
+        `[data-role=user-avatar][data-user=${data.name}]`
       );
 
       for (const avatar of avatars) {

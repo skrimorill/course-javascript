@@ -1,8 +1,8 @@
 export default class MessageSender {
   constructor(element, onSend) {
     this.onSend = onSend;
-    this.messageInput = document.querySelector('[data-id=chat-input-message]');
-    this.messageSendButton = document.querySelector('[data-id=chat-input-btn]');
+    this.messageInput = element.querySelector('[data-role=message-input]');
+    this.messageSendButton = element.querySelector('[data-role=message-send-button]');
 
     this.messageSendButton.addEventListener('click', () => {
       const message = this.messageInput.value.trim();
